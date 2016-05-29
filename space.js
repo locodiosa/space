@@ -4,6 +4,8 @@ var modelTime = 0;
 
 var sysTime = 0;
 
+var scale = 7.446221731936018e-7;
+
 var spaceObjects = [
 	{
 		name: "Earth",
@@ -43,9 +45,17 @@ function draw() {
 	context.fillRect(0, 0, canvas.width, canvas.height);	
 		
 	context.beginPath();
-	//..........
-	context.stroke();	
+	drawObjects(context, spaceObjects);
+	context.fill();	
 }
 
-
+function drawObjects(context, spaceObjects) {
+	context.fillStyle = '#eee';
+	context.translate(context.canvas.width / 2, context.canvas.height / 2);
+	
+	for (var i in spaceObjects) {
+		var o = spaceObjects[i];
+		context.arc(o.x * scale, -o.y * scale, o.radius * scale, 0, 2*Math.PI);
+	}
+}
 
