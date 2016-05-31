@@ -57,9 +57,25 @@ function drawObjects(context, spaceObjects) {
 	context.fillStyle = '#eee';
 	context.translate(context.canvas.width / 2, context.canvas.height / 2);
 	
-	for (var i in spaceObjects) {
-		var o = spaceObjects[i];
+	spaceObjects.forEach(function(o) { 
 		context.arc(o.x * scale, -o.y * scale, o.radius * scale, 0, 2*Math.PI);
-	}
+	});
 }
 
+function calc() {
+	spaceObjects.forEach(function(oi) {
+		var ax = 0;
+		var ay = 0;
+		//вычисляем ax, ay
+
+		oi.newX = oi.x + oi.speedX * modelDt + ax * modelDt * modelDt / 2;
+		oi.newY = oi.y + oi.speedY * modelDt + ay * modelDt * modelDt / 2;
+		oi.speedX += ax * modelDt;
+		oi.speedY += ay * modelDt;
+	});
+
+	spaceObjects.forEach(function(oi) {
+		oi.x = oi.newX;
+		oi.y = oi.newY;
+	});
+}
