@@ -2,9 +2,13 @@
 
 var modelTime = 0;
 
-var sysTime = 0;
+var sysTime = new Date().getTime() / 1000;
 
 var scale = 7.446221731936018e-7;
+
+var timeScale = 80640;
+
+var modelDt = 1;
 
 var spaceObjects = [
 	{
