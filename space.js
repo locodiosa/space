@@ -31,6 +31,16 @@ var spaceObjects = [
 		y: 362600000,
 		speedX: 1090,
 		speedY: 0
+	},
+
+	{
+		name: "satellite",
+		mass: 3e10,
+		radius: 900000,
+		x: 0,
+		y: 250000000,
+		speedX: -800,
+		speedY: 0
 	}
 ];
 
@@ -50,10 +60,8 @@ function draw() {
 	var context = canvas.getContext('2d');
 	context.fillStyle   = '#000'; 
 	context.fillRect(0, 0, canvas.width, canvas.height);	
-		
-	context.beginPath();
+	
 	drawObjects(context, spaceObjects);
-	context.fill();	
 }
 
 function drawObjects(context, spaceObjects) {
@@ -61,7 +69,10 @@ function drawObjects(context, spaceObjects) {
 	context.translate(context.canvas.width / 2, context.canvas.height / 2);
 	
 	spaceObjects.forEach(function(o) { 
+		context.beginPath();
 		context.arc(o.x * scale, -o.y * scale, o.radius * scale, 0, 2*Math.PI);
+		context.closePath();
+		context.fill();	
 	});
 }
 
@@ -79,6 +90,8 @@ function calcStep() {
 	spaceObjects.forEach(function(oi) {
 		var ax = 0;
 		var ay = 0; 
+		var sumax = 0;
+		var sumay = 0;
 
 		spaceObjects.forEach(function(oj) {
 			if (oj != oi) {
@@ -88,12 +101,14 @@ function calcStep() {
 				ax = a * (oj.x - oi.x) / r;
 				ay = a * (oj.y - oi.y) / r;
 			}
+			sumax += ax;
+			sumay += ay;
 		});
 							
-		oi.newX = oi.x + oi.speedX * modelDt + ax * modelDt * modelDt / 2;
-		oi.newY = oi.y + oi.speedY * modelDt + ay * modelDt * modelDt / 2;
-		oi.speedX += ax * modelDt;
-		oi.speedY += ay * modelDt;
+		oi.newX = oi.x + oi.speedX * modelDt + sumax * modelDt * modelDt / 2;
+		oi.newY = oi.y + oi.speedY * modelDt + sumay * modelDt * modelDt / 2;
+		oi.speedX += sumax * modelDt;
+		oi.speedY += sumay * modelDt;
 	});
 
 	spaceObjects.forEach(function(oi) {
