@@ -33,7 +33,7 @@ var spaceObjects = [
 ];
 
 var mainloop = function() {
-	//расчет();
+	calc();
 	draw();
 };
 
@@ -63,11 +63,21 @@ function drawObjects(context, spaceObjects) {
 }
 
 function calc() {
+
 	spaceObjects.forEach(function(oi) {
 		var ax = 0;
-		var ay = 0;
-		//вычисляем ax, ay
+		var ay = 0; 
 
+		spaceObjects.forEach(function(oj) {
+
+			if (oj != oi) {
+				var r = Math.sqrt(((oj.x - oi.x) * (oj.x - oi.x)) + ((oj.y - oi.y) * (oj.y - oi.y)));
+				var a = 6.67e-11 * oj.mass / (r * r);
+				ax = a * (oj.x - oi.x) / r;
+				ay = a * (oj.y - oi.y) / r;
+			}
+		});
+						
 		oi.newX = oi.x + oi.speedX * modelDt + ax * modelDt * modelDt / 2;
 		oi.newY = oi.y + oi.speedY * modelDt + ay * modelDt * modelDt / 2;
 		oi.speedX += ax * modelDt;
