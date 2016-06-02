@@ -2,7 +2,7 @@
 
 var modelTime = 0;
 
-var sysTime = new Date().getTime() / 1000;
+var startSystemTime = new Date().getTime() / 1000;
 
 var scale = 7.446221731936018e-7;
 
@@ -39,6 +39,7 @@ var mainloop = function() {
 
 setInterval(mainloop);
 
+
 function draw() {
 	var canvas  = document.getElementById("canvas");
 	canvas.width  = 600; 
@@ -64,28 +65,34 @@ function drawObjects(context, spaceObjects) {
 
 function calc() {
 
-	spaceObjects.forEach(function(oi) {
-		var ax = 0;
-		var ay = 0; 
+	var currentSystemTime = new Date().getTime() / 1000;
+	
+	if (modelTime < (currentSystemTime - startSystemTime) * timeScale) {
+		
+		spaceObjects.forEach(function(oi) {
+			var ax = 0;
+			var ay = 0; 
 
-		spaceObjects.forEach(function(oj) {
-
-			if (oj != oi) {
-				var r = Math.sqrt(((oj.x - oi.x) * (oj.x - oi.x)) + ((oj.y - oi.y) * (oj.y - oi.y)));
-				var a = 6.67e-11 * oj.mass / (r * r);
-				ax = a * (oj.x - oi.x) / r;
-				ay = a * (oj.y - oi.y) / r;
-			}
+			spaceObjects.forEach(function(oj) {
+				if (oj != oi) {
+					var r = Math.sqrt(((oj.x - oi.x) * (oj.x - oi.x)) + ((oj.y - oi.y) * (oj.y - oi.y)));
+					var a = 6.67e-11 * oj.mass / (r * r);
+					ax = a * (oj.x - oi.x) / r;
+					ay = a * (oj.y - oi.y) / r;
+				}
+			});
+							
+			oi.newX = oi.x + oi.speedX * modelDt + ax * modelDt * modelDt / 2;
+			oi.newY = oi.y + oi.speedY * modelDt + ay * modelDt * modelDt / 2;
+			oi.speedX += ax * modelDt;
+			oi.speedY += ay * modelDt;
 		});
-						
-		oi.newX = oi.x + oi.speedX * modelDt + ax * modelDt * modelDt / 2;
-		oi.newY = oi.y + oi.speedY * modelDt + ay * modelDt * modelDt / 2;
-		oi.speedX += ax * modelDt;
-		oi.speedY += ay * modelDt;
-	});
 
-	spaceObjects.forEach(function(oi) {
-		oi.x = oi.newX;
-		oi.y = oi.newY;
-	});
+		spaceObjects.forEach(function(oi) {
+			oi.x = oi.newX;
+			oi.y = oi.newY;
+		});
+
+		modelTime += modelDt;
+	};
 }
