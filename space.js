@@ -69,7 +69,7 @@ function calc() {
 
 	var currentSystemTime = new Date().getTime() / 1000;
 	
-	if (modelTime < (currentSystemTime - startSystemTime) * timeScale) {
+	while (modelTime < (currentSystemTime - startSystemTime) * timeScale) {
 		calcStep();
 		modelTime += modelDt;
 	};
