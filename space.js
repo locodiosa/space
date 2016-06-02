@@ -70,7 +70,7 @@ function drawObjects(context, spaceObjects) {
 	
 	spaceObjects.forEach(function(o) { 
 		context.beginPath();
-		context.arc(o.x * scale, -o.y * scale, o.radius * scale, 0, 2*Math.PI);
+		context.arc(o.x * scale, -o.y * scale, Math.max(scale * o.radius, 1), 0, 2*Math.PI);
 		context.closePath();
 		context.fill();	
 	});
