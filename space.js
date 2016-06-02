@@ -90,25 +90,21 @@ function calcStep() {
 	spaceObjects.forEach(function(oi) {
 		var ax = 0;
 		var ay = 0; 
-		var sumax = 0;
-		var sumay = 0;
-
+		
 		spaceObjects.forEach(function(oj) {
 			if (oj != oi) {
 				var r = Math.sqrt(((oj.x - oi.x) * (oj.x - oi.x)) + 
 						((oj.y - oi.y) * (oj.y - oi.y)));
 				var a = G * oj.mass / (r * r);
-				ax = a * (oj.x - oi.x) / r;
-				ay = a * (oj.y - oi.y) / r;
+				ax += a * (oj.x - oi.x) / r;
+				ay += a * (oj.y - oi.y) / r;
 			}
-			sumax += ax;
-			sumay += ay;
 		});
 							
-		oi.newX = oi.x + oi.speedX * modelDt + sumax * modelDt * modelDt / 2;
-		oi.newY = oi.y + oi.speedY * modelDt + sumay * modelDt * modelDt / 2;
-		oi.speedX += sumax * modelDt;
-		oi.speedY += sumay * modelDt;
+		oi.newX = oi.x + oi.speedX * modelDt + ax * modelDt * modelDt / 2;
+		oi.newY = oi.y + oi.speedY * modelDt + ay * modelDt * modelDt / 2;
+		oi.speedX += ax * modelDt;
+		oi.speedY += ay * modelDt;
 	});
 
 	spaceObjects.forEach(function(oi) {
