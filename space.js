@@ -12,7 +12,7 @@ var model1 = {
 	spaceObjects: [
 		{
 			name: "Earth",
-			mass: 5.9726e24,
+			mass: 5.9724e24,
 			radius: 6371000,
 			x: 0,
 			y: 0,
@@ -22,21 +22,21 @@ var model1 = {
 		
 		{
 			name: "Moon",
-			mass: 7.3477e10,
-			radius: 1737100,
+			mass: 7.346e10,
+			radius: 1737400,
 			x: 0,
-			y: 362600000,
-			speedX: 1090,
+			y: -363300000,
+			speedX: 1076,
 			speedY: 0
 		},
 
 		{
 			name: "satellite",
-			mass: 3e10,
-			radius: 900000,
+			mass: 1,
+			radius: 1,
 			x: 0,
-			y: 250000000,
-			speedX: -800,
+			y: -42164000,
+			speedX: 3070,
 			speedY: 0
 		}
 	]
