@@ -43,15 +43,15 @@ var model1 = {
 };
 
 var model2 = {
-	scale: 1e-11,
-	timeScale: 1051200,
-	modelDt: 1,
+	scale: 6.75e-11,
+	timeScale: 10005120,
+	modelDt: 100,
 
 	spaceObjects: [
 		{
 			name: "Sun",
 			mass: 1.9885e30,
-			radius: 6.9551e11,
+			radius: 695700000,
 			x: 0,
 			y: 0,
 			speedX: 0,
