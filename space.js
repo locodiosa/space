@@ -43,30 +43,104 @@ var model1 = {
 };
 
 var model2 = {
-	scale: 7.446221731936018e-7,
-	timeScale: 80640,
+	scale: 1e-11,
+	timeScale: 1051200,
 	modelDt: 1,
 
 	spaceObjects: [
 		{
 			name: "Sun",
 			mass: 1.9885e30,
-			radius: 6.9551e11
+			radius: 6.9551e11,
+			x: 0,
+			y: 0,
+			speedX: 0,
+			speedY: 0
 		},
 
 		{
 			name: "Mercury",
-			mass: 3.33022e23,
+			mass: 0.333011e24,
 			radius: 2439700,
-			x: 46001009000,
+			x: 46000000000,
 			y: 0,
 			speedX: 0,
-			speedY: 59000
+			speedY: 55980
+		},
+			
+		{
+			name: "Venus",
+			mass: 4.8675e24,
+			radius: 6051800,
+			x: 107480000000,
+			y: 0,
+			speedX: 0,
+			speedY: 35260
+		},
+
+		{
+			name: "Earth",
+			mass: 5.9724e24,
+			radius: 6371000,
+			x: 147090000000,
+			y: 0,
+			speedX: 0,
+			speedY: 30290
+		},
+
+		{
+			name: "Mars",
+			mass: 0.64171e24,
+			radius: 3389500,
+			x: 206620000000,
+			y: 0,
+			speedX: 0,
+			speedY: 26500
+		},
+
+		{
+			name: "Jupiter",
+			mass: 1.89819e27,
+			radius: 69911000,
+			x: 740520000000,
+			y: 0,
+			speedX: 0,
+			speedY: 13720
+		},
+
+		{
+			name: "Saturn",
+			mass: 568.34e24,
+			radius: 58232,
+			x: 1352550000000,
+			y: 0,
+			speedX: 0,
+			speedY: 10180
+		},
+
+		{
+			name: "Uranus",
+			mass: 86.813e24,
+			radius: 25362,
+			x: 2741300000000,
+			y: 0,
+			speedX: 0,
+			speedY: 7110
+		},
+
+		{
+			name: "Neptune",
+			mass: 102.413e24,
+			radius: 24622,
+			x: 4444450000000,
+			y: 0,
+			speedX: 0,
+			speedY: 5500
 		}
 	]
 };
 
-var currentModel = model1;
+var currentModel = model2;
 
 var mainloop = function() {
 	calc();
