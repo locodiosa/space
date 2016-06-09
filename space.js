@@ -154,6 +154,14 @@ function chooseModel2() {
 	startSystemTime = new Date().getTime() / 1000;
 }
 
+function scalePlus() {
+	currentModel.scale *= 1.1;
+}
+
+function scaleMoin() {
+	currentModel.scale *= 0.9;
+}
+
 var mainloop = function() {
 	calc();
 	draw();

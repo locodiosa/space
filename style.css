@@ -21,6 +21,31 @@
 	margin-left: 20px;
 }
 
+.scale {
+	position: absolute;
+	cursor: pointer;
+}
+
+#plus1 {
+	margin-top: 100px;
+	margin-left: 160px;
+}
+
+#moin1 {
+	margin-top: 130px;
+	margin-left: 160px;
+}
+
+#plus2 {
+	margin-top: 200px;
+	margin-left: 160px;
+}
+
+#moin2 {
+	margin-top: 230px;
+	margin-left: 160px;
+}
+
 #canvas {
 	position: absolute;
 	margin-top: 10px;
