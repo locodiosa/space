@@ -144,10 +144,14 @@ var currentModel = model2;
 
 function chooseModel1() {
 	currentModel = model1;
+	modelTime = 0;
+	startSystemTime = new Date().getTime() / 1000;
 }
 
 function chooseModel2() {
 	currentModel = model2;
+	modelTime = 0;
+	startSystemTime = new Date().getTime() / 1000;
 }
 
 var mainloop = function() {
