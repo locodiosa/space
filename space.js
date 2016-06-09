@@ -142,6 +142,14 @@ var model2 = {
 
 var currentModel = model2;
 
+function chooseModel1() {
+	currentModel = model1;
+}
+
+function chooseModel2() {
+	currentModel = model2;
+}
+
 var mainloop = function() {
 	calc();
 	draw();
