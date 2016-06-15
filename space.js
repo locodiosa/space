@@ -167,7 +167,9 @@ var mainloop = function() {
 	draw();
 }
 
-setInterval(mainloop);
+var FRAME_RATE_HZ = 50;
+
+setInterval(mainloop, 1000 / FRAME_RATE_HZ);
 
 
 function draw() {
