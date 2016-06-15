@@ -197,10 +197,11 @@ function drawObjects(context) {
 }
 
 function calc() {
-
-	var currentSystemTime = getSystemTime();
+	var CALC_TIME_LIMIT = 0.1;	// limit calculation time to 100 ms
+	var frameSystemTime = getSystemTime();
 	
-	while (modelTime < (currentSystemTime - startSystemTime) * currentModel.timeScale) {
+	while (modelTime < (frameSystemTime - startSystemTime) * currentModel.timeScale 
+			&& (getSystemTime() - frameSystemTime < CALC_TIME_LIMIT)) {
 		calcStep();
 		modelTime += currentModel.modelDt;
 	};
