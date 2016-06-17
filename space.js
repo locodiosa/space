@@ -1,7 +1,7 @@
 "use strict";
 
 var modelTime = 0;
-var startSystemTime = new Date().getTime() / 1000;
+var startSystemTime = getSystemTime();
 var G = 6.67e-11;
 
 var model1 = {
@@ -145,13 +145,13 @@ var currentModel = model2;
 function chooseModel1() {
 	currentModel = model1;
 	modelTime = 0;
-	startSystemTime = new Date().getTime() / 1000;
+	startSystemTime = getSystemTime();
 }
 
 function chooseModel2() {
 	currentModel = model2;
 	modelTime = 0;
-	startSystemTime = new Date().getTime() / 1000;
+	startSystemTime = getSystemTime();
 }
 
 function scalePlus() {
@@ -167,7 +167,9 @@ var mainloop = function() {
 	draw();
 }
 
-setInterval(mainloop);
+var FRAME_RATE_HZ = 50;
+
+setInterval(mainloop, 1000 / FRAME_RATE_HZ);
 
 
 function draw() {
@@ -195,10 +197,11 @@ function drawObjects(context) {
 }
 
 function calc() {
-
-	var currentSystemTime = new Date().getTime() / 1000;
+	var CALC_TIME_LIMIT = 0.1;	// limit calculation time to 100 ms
+	var frameSystemTime = getSystemTime();
 	
-	while (modelTime < (currentSystemTime - startSystemTime) * currentModel.timeScale) {
+	while (modelTime < (frameSystemTime - startSystemTime) * currentModel.timeScale 
+			&& (getSystemTime() - frameSystemTime < CALC_TIME_LIMIT)) {
 		calcStep();
 		modelTime += currentModel.modelDt;
 	};
@@ -230,4 +233,8 @@ function calcStep() {
 		oi.x = oi.newX;
 		oi.y = oi.newY;
 	});
+}
+
+function getSystemTime() {
+	return Date.now() / 1000;
 }
