@@ -10,8 +10,8 @@
 	<canvas id="canvas"></canvas>
 	<div id="model1" class="button" onclick="chooseModel1()"> Земля-Луна </div>
 	<div id="model2" class="button" onclick="chooseModel2()"> Солнечная система </div>
-	<div id="plus" class="button" onclick="scalePlus()"> + </div>
-	<div id="moin" class="button" onclick="scaleMoin()"> - </div>
+	<div id="plus" class="button" onmousedown="changeScaleSpeed(1.01)" onmouseup="changeScaleSpeed(1)" onmouseout="changeScaleSpeed(1)"> + </div>
+	<div id="moin" class="button" onmousedown="changeScaleSpeed(0.99)" onmouseup="changeScaleSpeed(1)" onmouseout="changeScaleSpeed(1)"> - </div>
 </body> 
 </html>
 

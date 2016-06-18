@@ -3,6 +3,7 @@
 var modelTime = 0;
 var startSystemTime = getSystemTime();
 var G = 6.67e-11;
+var scaleSpeed = 1;
 
 var model1 = {
 	scale: 7.446221731936018e-7,
@@ -154,15 +155,17 @@ function chooseModel2() {
 	startSystemTime = getSystemTime();
 }
 
-function scalePlus() {
-	currentModel.scale *= 1.1;
+function changeScale() {
+	currentModel.scale *= scaleSpeed;
 }
 
-function scaleMoin() {
-	currentModel.scale *= 0.9;
+function changeScaleSpeed(n) {
+	scaleSpeed = n;
 }
+
 
 var mainloop = function() {
+	changeScale();
 	calc();
 	draw();
 }
@@ -238,3 +241,4 @@ function calcStep() {
 function getSystemTime() {
 	return Date.now() / 1000;
 }
+
